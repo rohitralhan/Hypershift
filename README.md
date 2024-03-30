@@ -15,7 +15,7 @@ In the following guide we will showcase how to install Red Hat OpenShift Contain
 
 # 1. Architecture
 
-![](https://lh7-us.googleusercontent.com/KW-2ff1_cazf3OwJfzhrZ-xsHpZzTyAIkIdGASGbulEbuhACrqX4qh0p9TpDR645BGFcoLSFbrO_W7keB_PkH_gTCK1I-yykyjRMRtyc2gU1Cb0lgeEsqSEIeja8MvoiEm0BsO_pyIsr7wqj3y3pVho)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/architecture.png)
 
 As shown in the diagram above we will be installing the Red Hat OpenShift Cluster (Hub cluster) on 6 physical machines. This will be a 3 master and 3 worker node custer. The hosted clusters worker nodes will be deployed on virtual machines, there will be 3 worker nodes each, deployed on a different virtual machine.Both the Hub and the hosted clusters will be integrated with an LDAP server with RBAC for both the Hub and the hosted. For the purposes of this demo we will be using Red Hat Identity Management as the LDAP server, you can also choose a different LDAP server if you wish.
 
@@ -71,7 +71,7 @@ This document will act as a high level guide for installing Red Hat OCP using As
 16. Review the summary and click **Install Cluster**
 17. On the Next screen you will be able to monitor the overall progress of the cluster and also for each and every node individually in the cluster.
 18. Once the installation is complete you will be provided with the OpenShift Console URL along with the credentials. It will also provide the option to download the kubeconfig file, this file contains the cluster authentication information that can be used while executing commands via the openshift CLI. The animated image below shows installations steps mentioned above.
-![](https://lh7-us.googleusercontent.com/ODO4PX1llnHJa-eFSVmytH0GpRwNH5E8aldLwIXuXIB8ZEWsYj8GIgbD5dncJ2DW9uipgYj7d5Ga1ilIIfZKUCLyjmRAJXE6w8Qxn33ZdwXv0sfiytTHG5FwWHzme3_86D5gdAjbdQCXByk6wu_ssMQ)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/AssistedInstaller/output.gif)
 
 ### **PS - Custom Network Configuration (Static IP, Bridge and Bond) Step 9 above**
 
@@ -96,7 +96,7 @@ interfaces:
       - enp8s0
 
 ```
-![](https://lh7-us.googleusercontent.com/MAhzRyF7tuAvW3_TmXiFdH-MX6XruTfFwEdqHedy9dlaaUtFG8a71r0IsRnoyCBbcNwPDmCrPajoxLSTP0xoQfNyONtuRI6qxX4ssIYuhCJmpmFFZ_Dj4cZHSAHJW40AO1gTTmDpuNOgwWjT2aEVFsg)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/BondSetUp/output.gif)
 
 ###
 
@@ -105,14 +105,14 @@ interfaces:
 When Install process shows complete
 * Ensure you download and save the “**kubeconfig**” to your machine and name it “_kubeconfig-xxx_” or any other name of your choice, kubeconfig will be used to run **“oc”** commands as needed. Steps later in the document will be based on this name.
 
-  ![](https://lh7-us.googleusercontent.com/J86W_n68KWYi-WsPrBtHbNRNhmygGnuGhgvvkGGvmFhGW-FvAfic9-CUHZnk5M3V0rOCWI7U931lz1b6DjAqme8R1gmCNHQEh3ybXYbczxfjM2lqff0d4SoTCkZFQh1Vdxya2FYfgnU8FVCM1MNW4rU)
+  ![](https://github.com/rohitralhan/hypershift/blob/main/images/download-kubeconfig.png)
 
 * Log into the Web console for the cluster using the “**kubeadmin**” account credentials shown in the Installer page.
 * Download and install the “**oc**” command. You will need this tool for later steps. Refer to the screenshot below on how to download the tools from the Red Hat OpenShift webconsole.
   - The “**oc**” tool is a binary which you can place at any location. Update the path variable with the location of the “**oc**” tool, this will allow you to run the “oc” tool from the CLI without specific the complete plath.
 
-    ![](https://lh7-us.googleusercontent.com/DYMU5OeLmwed9u4co9mDq5lLi6Og2e0d8AayHGNpku3eFvLyV2sotiHnZtvSeygWkWLdxklzQbvsD3VFNlzeM9rfk4dLD8zjpj__1GUvF5qyWqMfv5lSD7IPS8uRxlXQxH6Cps-Dy76rLNwmpHYxaVY)
-![](https://lh7-us.googleusercontent.com/qOfBoT_YCsnptoMMKLVuS5Ts3U3tlokW50YT-YyXf_XtbFgcbODgAS1RQ7GA75AzgK7n64kPQm_1suqkcHW9rUay6ZUDdjiqbK4yV2JTZ7sELS71fcxq5OOyCGvjzKncVWRvBEM6UnNTqk8oue2diDs)
+    ![](https://github.com/rohitralhan/hypershift/blob/main/images/download-oc2.png)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/download-oc1.png)
 
 * Execut the “**oc login -u kubeadmin**” command provide the password when prompted for the kubeadmin user. You will need to use the “**oc**” cli tool later to execute commands, and thus must be logged in to execute those commands successfully.
 * Follow the steps below to ensure the below operators are installed correctly
@@ -121,14 +121,14 @@ When Install process shows complete
     - Local Storage
     - ODF
     - OpenShift Virtualization
-![](https://lh7-us.googleusercontent.com/t-nWOkJo3E99U2T9EC7agKbx-CI9HGoIGfnTuX-95Z92fJnE3K0HQsT7aegTcsUjzxQAHhQTuHiDEbKL7j46XQfZ-HyRuMbzxcVsCcbTHw1Lo3HffZu9vZU7zDi8l9QCxGbizvzuu8rMnHONmeUI8uw)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/installed-operators.png)
 * Enable the **OpenShift Data Foundation** operator **console** **plugin** by following the steps below:
   - In the Red Hat OpenShift Console navigate to **Operators → Installed Operators** click **OpenShift Data Foundation**
   - On the extreme right click under the **Console Plugin** (it should say Disabled/Enabled)
   - In the popup that opens select **Enabled** and click **Save**.
   - Click **Storage** in the left panel and you should see and option for **Data Foundation** as shown in the screenshot below.
 
-    ![](https://lh7-us.googleusercontent.com/31mwFcOZePTS3s31sdIcgr-rVYu_a3dDMeqFXgP1N_EUnpLTQ6LacGK1dOqohfHYGG7RZZZ2ES_JVn4Mjck_REdhGmTMxlWTMbAqsYCdE01ASgN57jmZdin4zU3gmNXmoGcVGHL0nIIoRI8yKzrWDNU)
+    ![](https://github.com/rohitralhan/hypershift/blob/main/images/EnableConsolePlugin/output.gif)
 
 # 4. Install and configure MetalLB Operator
 
@@ -141,7 +141,7 @@ MetalLB will be used as a provider to create externally accessible IP addresses.
    You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.
 3. On the **Install Operator** page, accept the defaults and click **Install**. Refer to the screenshots below.
 
-![](https://lh7-us.googleusercontent.com/upvmU9ZtJ2mb7Ppg2aFs9NsczRB-JIASbd1egX8XB6v0Rr66VxGLmfCgkz5kPLNSgXSjCLlcAiQPiZrW6nyI8XLgR3fZfIu8dpfY33Kep3J5VmYTIBxJrnOLU_Pfzvp39bS0sf5CeW3W4nq1tLifnkA)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/MetalLB/Install/output.gif)
 
 ## 4.2. Configuration Procedure
 
@@ -154,7 +154,7 @@ The steps below assume taking the simplest of IP Load Balancing configurations. 
 2. Go to the **MetalLB Tab** and Click **Create MetalLB**
 3. On the next screen accept the default values and click **Create**
 
-![](https://lh7-us.googleusercontent.com/-SaAiIbnhU2HBIzz4wCSZlmN9e87rjA4k9Ydkp8t0rRF7omdLClS73RffqJhPUXIlUTjo4D_mgHytbcX4xRcTtpqHzDQVCV9oe0vMghK5L73ZNu20DVMse8hshWjhrU3fdf1BMV4BhFl5hozETtycMY)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/MetalLB/config/output4.gif)
 
 ### 4.2.2. Create IPAddressPool
 
@@ -164,7 +164,7 @@ When configuring the IP Pool you should be sure to use the remaining two IP addr
 1. Go to the **IPAddressPool Tab** and Click **Create IPAddressPool**
 2. On the next screen provide the address pool and click **Create**
 
-![](https://lh7-us.googleusercontent.com/PcuXWVK26QfS1aJEIkst_24qg841LKnWrFoUfS1xhsLXVczRj-ivOImDo-B58Vvs9UWXg03g9BTDSjiV4rE6addPu9AnmsUa0UaPCNEA4h4LV_cNfuxHL8hNF1WYmQFMdDZB_r9YsWW8Lqy2Q2KDjf0)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/MetalLB/config/output7.gif)
 
 ### 4.2.3. Create L2Advertising
 
@@ -172,7 +172,7 @@ Finally create an L2Advertisement using the IPAddress pool created in the prior 
 1. Go to the **L2Advertisement Tab** and Click **Create L2Advertisement**
 2. In the next step under the **ipAddressPools** select the **IPAddressPool** created in the previous step and click **Create**
 
-![](https://lh7-us.googleusercontent.com/D4qb-VqtzoXwE8byGNMlrw-POpYVuM-IOop9o-8Rl6BrClegKb6aJ-wMLsLDtw_bMzyx2frFWjF_hZj-HJh9I4HrWxercqWti87SfSFyFbYXvv5L97RYLU6YQAsZshkP9t2F_8VrnzCCAlYeA6RvT44)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/MetalLB/config/output10.gif)
 
 # 5. MultiCluster-engine Operator for Kubernetes
 
@@ -220,16 +220,20 @@ $ hcp create cluster kubevirt --name tenant1 --node-pool-replicas 3   --pull-sec
   - Navigate to **Home** → **Projects**
   - On the right had side you will see that there is a project created for each and every hosted cluster create with the nomenclature **clusters-<\<CLUSTER\_NAME as specified in the –name field>>** clusters-tenant1 in this case.
 
-![](https://lh7-us.googleusercontent.com/0Fvkc7kDSYUwTLhaaevdVrl1p4ZFPzUKTjYWm8cKywaI9WPP2YqxSvQlcXZ1XDJn8VUYiIpCdNBNLmd0H2ff9H7GPFD8fQVxkyuleF_cB0GfkO6TOPp287y5Dsb440qlylHjlJ3x9U81zj0bYdVFVs8)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/projects.png)
 
 - Click **clusters-tenant1** and scroll dow to see all the resources (pods, virtual machines etc) coming up.
 
-![](https://lh7-us.googleusercontent.com/nJ1bobEUv_3by9cY58ztH1iIv2zIDENz8N9-L2AF4Tj_mTW2gncdZ4JhBjNU_POYhOvoLbMWFZkuoTGB8i6DPNO_PyAIC2UIA-Ok5hXE2qG8AcVnFPEAEy2zAvkr1UmLNYAdvr0qqVo5lvbp46DkXYo)
+![](https://github.com/rohitralhan/hypershift/blob/main/images/vms.png)
 
 - When the install is complete be sure to download and save the kubeconfig file for this cluster and name it “_kubeconfig-xxx_”, we will need it later to executing commands via CLI on the hosted cluster.
   - Navigate to the Red Hat OpenShift Web Console and select All Clusters at the top. Here you will see all the hosted clusters listed
 
-    ![](https://lh7-us.googleusercontent.com/2C5kHp393xNXwJ6RaSSCj5bVRrdKOxDR8rVRv1q0wVbZobYITtI3yZO35Bqgd9X1QrAwAXnGLaUFvvLipJgONTlvR9o_Qici8WOFpALzkRtobohLOFG0tOtLKYUppKs2ZdduWxbluFEqQwaD1ZMqo_0)
+    ![](https://github.com/rohitralhan/hypershift/blob/main/images/hosted-clusters.png)
   - Click the hosted cluster of intereset (say tenant1) and in the screen that opens up you will see the Red hat OpenShift Web Console URL for the tenant1 cluster along with an option to download the kubeconfig file.
 
-    ![](https://lh7-us.googleusercontent.com/r0HREcCxRjIKqz8fCY68M02v7Srz3er5qIY1T42Crv_xarUKNpqrPztGyI9NWn_s8YDDPiFS9FwGDe0UhiKUBVZSDv5Vzjau1S5KzwkKM8J9lCl28yhzN8lYjzdnakxjcgmYp3ZXXmsIe7QcOcbHBSY)
+    ![](https://github.com/rohitralhan/hypershift/blob/main/images/console-url.png)
+
+<BR><BR><BR>
+
+### Click [here](https://github.com/rohitralhan/hypershift-ldap-rbac/README.md) to learn about setting up LDAP and Role based access control with the Hub and the hosted clusters
